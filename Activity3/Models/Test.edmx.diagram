@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="TestModel.userWork" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="TestModel.FK_forTwo_fk" ManuallyRouted="false" />
         <AssociationConnector Association="TestModel.FK_for_fk" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TestModel.ModuleTest" Width="1.5" PointX="5.125" PointY="3.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

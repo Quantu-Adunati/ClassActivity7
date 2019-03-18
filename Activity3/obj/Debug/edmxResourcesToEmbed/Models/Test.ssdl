@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ModuleTest">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="100" />
+    <Property Name="Guid" Type="varchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="userINFs">
     <Key>
       <PropertyRef Name="idOfUser" />
@@ -47,6 +55,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="TestModelStoreContainer">
+    <EntitySet Name="ModuleTest" EntityType="Self.ModuleTest" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="userINFs" EntityType="Self.userINFs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="userTs" EntityType="Self.userTs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="userWorks" EntityType="Self.userWorks" Schema="dbo" store:Type="Tables" />

@@ -62,5 +62,14 @@
       <End Role="userTs" EntitySet="userTs" />
       <End Role="userWorks" EntitySet="userWorks" />
     </AssociationSet>
+    <EntitySet Name="ModuleTests" EntityType="TestModel.ModuleTest" />
   </EntityContainer>
+  <EntityType Name="ModuleTest">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Guid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

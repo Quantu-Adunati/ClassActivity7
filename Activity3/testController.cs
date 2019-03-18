@@ -6,6 +6,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Activity3.Models;
+using System.Security.Cryptography;
+using System.IO;
+using System.Text;
 
 namespace Activity3
 {
@@ -17,15 +20,18 @@ namespace Activity3
         public HttpResponseMessage getSomeData()
         {
             List<userT> outObjects = db.userTs.ToList();
+            ModuleTest er = db.ModuleTests.FirstOrDefault();
             List<dynamic> newObj = new List<dynamic>();
 
             foreach (var u in outObjects)
             {
-                dynamic obj = new ExpandoObject();
-                obj.Name = u.Name;
-                obj.Surname = u.Surname;
-
-                newObj.Add(obj);
+                if(er.Guid == "26dfe295-63d3-42fa-ab87-b974c0554eea")
+                {
+                    dynamic obj = new ExpandoObject();
+                    obj.Name = u.Name;
+                    obj.Surname = u.Surname;
+                    newObj.Add(obj);
+                }                             
             }
             var response = Request.CreateResponse(HttpStatusCode.OK, newObj);
             response.Headers.Add("Access-Control-Allow-Origin", "*");
@@ -39,13 +45,17 @@ namespace Activity3
             userT user = db.userTs.FirstOrDefault();
             userINF gender = db.userINFs.Where(uu=>uu.idOfUser == user.userID).FirstOrDefault();
             userWork work = db.userWorks.Where(ii => ii.idUser == user.userID).First();
+            ModuleTest er = db.ModuleTests.FirstOrDefault();
             List<dynamic> newObj = new List<dynamic>();
            dynamic obj = new ExpandoObject();
-            
-                    obj.Name = user.Name;
-                    obj.Surname = user.Surname;
-                    obj.Gender = gender.gender;
-                    obj.TypeOfWork = work.workType;
+            if (er.Guid == "26dfe295-63d3-42fa-ab87-b974c0554eea")
+            {
+                obj.Name = user.Name;
+                obj.Surname = user.Surname;
+                obj.Gender = gender.gender;
+                obj.TypeOfWork = work.workType;
+            }
+          
             newObj.Add(obj);
             var response = Request.CreateResponse(HttpStatusCode.OK, newObj);
             response.Headers.Add("Access-Control-Allow-Origin", "*");
@@ -62,11 +72,14 @@ namespace Activity3
             userWork work = db.userWorks.Where(ii => ii.idUser == user.userID).First();
             List<dynamic> newObj = new List<dynamic>();
             dynamic obj = new ExpandoObject();
-
-            obj.Name = user.Name;
-            obj.Surname = user.Surname;
-            obj.Gender = gender.gender;
-            obj.TypeOfWork = work.workType;
+            ModuleTest er = db.ModuleTests.FirstOrDefault();
+            if (er.Guid == "26dfe295-63d3-42fa-ab87-b974c0554eea")
+            {
+                obj.Name = user.Name;
+                obj.Surname = user.Surname;
+                obj.Gender = gender.gender;
+                obj.TypeOfWork = work.workType;
+            }
 
             newObj.Add(obj);
             var response = Request.CreateResponse(HttpStatusCode.OK, newObj);
@@ -85,6 +98,13 @@ namespace Activity3
             userT user = new userT();
             userINF u = new userINF();
             userWork w = new userWork();
+            ModuleTest m = new ModuleTest();
+
+            Guid objd = Guid.NewGuid();
+            m.password = "ertfg45";
+            m.Guid = objd.ToString();
+
+            db.ModuleTests.Add(m);
 
             user.Name = name;
             user.Surname = surname;
@@ -131,14 +151,19 @@ namespace Activity3
             user.Surname = surname;
             db.SaveChanges();
             //Get id of user that we just inserted
-           
-            //Send back this data to showcase the info we just added to the db
-            List<dynamic> newObj = new List<dynamic>();
-            dynamic obj = new ExpandoObject();
 
-            obj.Name = name;
-            obj.Surname = surname;
-            newObj.Add(obj);
+            //Send back this data to showcase the info we just added to the db
+            List<userT> outObjects = db.userTs.ToList();
+            List<dynamic> newObj = new List<dynamic>();
+
+            foreach (var u in outObjects)
+            {
+                dynamic obj = new ExpandoObject();
+                obj.Name = u.Name;
+                obj.Surname = u.Surname;
+
+                newObj.Add(obj);
+            }
             var response = Request.CreateResponse(HttpStatusCode.OK, newObj);
             response.Headers.Add("Access-Control-Allow-Origin", "*");
 

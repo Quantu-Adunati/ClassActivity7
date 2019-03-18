@@ -28,5 +28,6 @@ namespace Activity3.Models
         public virtual DbSet<userINF> userINFs { get; set; }
         public virtual DbSet<userT> userTs { get; set; }
         public virtual DbSet<userWork> userWorks { get; set; }
+        public virtual DbSet<ModuleTest> ModuleTests { get; set; }
     }
 }

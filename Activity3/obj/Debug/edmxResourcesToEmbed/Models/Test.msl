@@ -26,5 +26,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ModuleTests">
+      <EntityTypeMapping TypeName="TestModel.ModuleTest">
+        <MappingFragment StoreEntitySet="ModuleTest">
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
