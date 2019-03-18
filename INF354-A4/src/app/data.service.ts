@@ -21,9 +21,10 @@ export class DataService {
   {
     return this.http.get('http://localhost:4641/api/test/api/test/insertData?name='+n+'&surname='+f+'&gender='+g+'&work='+w);
   }
-  updateUserDetails(m:string)
+  updateUserDetails( n:string, f:string, g:string)
   {
-    return this.http.post('http://localhost:4641/api/test/api/test/updateData',m);
+    console.log("here");
+    return this.http.get('http://localhost:4641/api/test/updateData?nameFirst='+n+'&name='+f+'&surname='+g);
   }
   firstClick()
   {

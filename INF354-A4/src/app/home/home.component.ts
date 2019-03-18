@@ -42,14 +42,14 @@ export class HomeComponent implements OnInit {
   }
   onSubmit() {
     this.submitted = true;
-
+    
     if (this.insertForm.invalid) {
         return;
     }
     this.nameFirst = this.insertForm.controls.nameFirst.value;
     this.name = this.insertForm.controls.name.value;
     this.surname = this.insertForm.controls.surname.value;
-
+    this.updateUser();
     this.success = true;
 }
     getMore()
@@ -67,8 +67,8 @@ export class HomeComponent implements OnInit {
     }
     updateUser()
     {
-      this.sendString ="?nameFirst"+this.nameFirst+"&name="+this.name+"&surname="+this.surname;
-      this.data.updateUserDetails(this.sendString).subscribe(data=>{
+      
+      this.data.updateUserDetails(this.nameFirst,this.name,this.surname).subscribe(data=>{
         this.users = data;
       });
     }
